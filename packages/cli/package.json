@@ -1,0 +1,22 @@
+{
+  "name": "@agentpay/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "agentpay": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint src tests --max-warnings 0",
+    "cli": "node ./dist/cli.js"
+  },
+  "dependencies": {
+    "@agentpay/sdk": "0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.6.3",
+    "vitest": "^3.0.0"
+  }
+}

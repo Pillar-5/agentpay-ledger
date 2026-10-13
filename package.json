@@ -1,0 +1,49 @@
+{
+  "name": "agentpay-ledger",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Payment orchestration and reconciliation for software agents and digital services.",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "workspaces": [
+    "apps/api",
+    "apps/web",
+    "packages/core",
+    "packages/moove",
+    "packages/sdk",
+    "packages/cli",
+    "packages/mcp"
+  ],
+  "scripts": {
+    "dev": "npm run dev:api",
+    "dev:api": "npm run dev -w @agentpay/api",
+    "dev:web": "npm run dev -w @agentpay/web",
+    "build": "npm run build -w @agentpay/core && npm run build -w @agentpay/moove && npm run build -w @agentpay/sdk && npm run build -w @agentpay/api && npm run build -w @agentpay/cli && npm run build -w @agentpay/mcp && npm run build -w @agentpay/web",
+    "lint": "eslint . --max-warnings 0",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "vitest run",
+    "test:live": "LIVE_MOOVE_TESTS=1 vitest run --project live",
+    "db:migrate": "node scripts/migrate.mjs",
+    "db:seed": "node scripts/seed.mjs",
+    "start": "npm run start -w @agentpay/api",
+    "start:web": "npm run start -w @agentpay/web",
+    "cli": "npm run cli -w @agentpay/cli",
+    "example:agent": "node --env-file=.env examples/agent-service.ts",
+    "smoke": "node scripts/smoke.mjs",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.14.0",
+    "eslint": "^9.14.0",
+    "prettier": "^3.3.3",
+    "typescript": "~5.6.3",
+    "typescript-eslint": "^8.15.0",
+    "vitest": "^3.0.0"
+  },
+  "allowScripts": {
+    "better-sqlite3": true,
+    "esbuild": true
+  }
+}
